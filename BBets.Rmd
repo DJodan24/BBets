@@ -61,13 +61,6 @@ Mr. Brownlow is generating a mean profit of $mean with a profit standard deviati
 
 <!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
 
-
-
-
-# What size of class makes the 2:1 bet fair?  Use manipulation of number of Students to tune Brownlows earnings to zero.
-
-<!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
-
 ```{r}
 teachers <- numeric (1000)
  for (i in 1:1000){
@@ -90,6 +83,11 @@ hist(teachers,
      col = "skyblue",
      border = "black")
 ```
+
+
+# What size of class makes the 2:1 bet fair?  Use manipulation of number of Students to tune Brownlows earnings to zero.
+
+<!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
 
 # Discussion and Conclusion
