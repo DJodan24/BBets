@@ -42,6 +42,19 @@ The function will be given a class_size by number of students, odds, and Number_
   
 <!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows winnings (or losings)-->
 
+```{r}
+teachers <- numeric (40)
+ for (i in 1:40){teachers [i] <-BrLw()}
+birthdays1<- fav_stats(teachers)
+
+print("We can say that Brownlows is making an avarge of")
+print(birthdays1$mean-2*birthdays1$sd)
+print("The 95% confidence level goes from")
+print("to")
+print(birthdays1$mean+2*birthdays1$sd)
+```
+
+Mr. Brownlow is generating a mean profit of $mean with a profit standard deviation of $sd. The 95% confidence interval spans from 225.2167 to 336.4333.
 
 # What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
 
