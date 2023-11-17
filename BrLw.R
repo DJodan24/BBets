@@ -1,3 +1,4 @@
+
 BrLw <-function(numClass,odds,countoDo){
 
 days=1:365
