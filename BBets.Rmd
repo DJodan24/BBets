@@ -104,16 +104,20 @@ hist(teachers,
 
 <!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
+
 ```{r}
-q2data <- c()
-iterations = 250
-for (i in 1:iterations) {
-  q2data <- c(q2data, BrLw(numClass = 28))
+
+teachers <- numeric(40)
+for (i in 1:40){
+  teachers[i]=BrLw(numClass=28)
 }
-hist(q2data, main = "Histogram of Results", xlab = "Value", col = "blue", border = "black", breaks = 15)
+
+favstats(teachers)   
 ```
 
-Using trial and error we adjusted the input odds to get the results to mean over 0 as consistantly as possible, there is some natural variation but without overloading the processing power of this system with extremely large sample sizes this class size of 28 is the best result that we can obtain.
+
+## Answer: After trying different numbers of student, we set the numClass to 28 even though it did not get Brownlows earnings to be exactly 0 however 28 students gave us the closes values to zero.
+
 
 # Discussion and Conclusion
 
