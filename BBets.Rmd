@@ -37,21 +37,47 @@ There are 3 questions and there should be at least 3 separate commits, at least 
 The function will be given a class_size by number of students, odds, and Number_of_times brownlow made the bet.  It will give you back how much Brownlows earnings were. We will use it to answer our three questions below. If you can, improve this function by giving default values to some of its inputs. 
 
 # In the class and payoff as described  If you highered 40 brownlow substitute teachers to do the same thing that Brownlow did then.
+
+```{r}
+options(digits = 2)
+teachers <- numeric(40)
+for (i in 1:40){
+  teachers[i]<-BrLw()
+}
+
+fav_stats(teachers) -> profit
+
+print("we can say that Mr. Brownlows is making an average of")
+print(profit$mean)
+print("The 95% confidence level goes from")
+print(profit$mean-2*profit$sd)
+print("to")
+print(profit$mean+2*profit$sd)
+
+```
+
+
+```{r}
+central <- favstats(teachers)
+
+cat("Mr Brownlow is on average making $",central$mean," over the course of the experiemnt.\n")
+
+cat("95% Conficence Interval: Low:$",central$mean - 2*central$sd,"- High $", central$mean + 2*central$sd)
+```
+
 ## what is their average earnings
 ## the standard deviation and a 95% confidence interval for their earnings?
   
 <!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows winnings (or losings)-->
 
 ```{r}
-teachers <- numeric (40)
- for (i in 1:40){teachers [i] <-BrLw()}
-birthdays1<- fav_stats(teachers)
+teachers <- numeric(1000)
+for (i in 1:1000){
+  teachers[i]=BrLw(odds=4.39)
+}
 
-print("We can say that Brownlows is making an avarge of")
-print(birthdays1$mean-2*birthdays1$sd)
-print("The 95% confidence level goes from")
-print("to")
-print(birthdays1$mean+2*birthdays1$sd)
+favstats(teachers)
+
 ```
 
 Mr. Brownlow is generating a mean profit of $mean with a profit standard deviation of $sd. The 95% confidence interval spans from 225.2167 to 336.4333.
@@ -70,27 +96,40 @@ teachers <- numeric (1000)
 
 ```
 
-First we conducted tests on the odds with a sample of 40 teachers. Despite numerous iterations, the odds remained unstable, prompting us to expand the sample to 1000 teachers. Following this increase, we reevaluated the odds.
-
-After conducting multiple rounds of testing, we identified the set of odds with a stability factor of 4.39 as the most consistent.
+##First we conducted tests on the odds with a sample of 40 teachers. Despite numerous iterations, the odds remained unstable, prompting us to expand the sample to 1000 teachers. Following this increase, we reevaluated the odds. After conducting multiple rounds of testing, we identified the set of odds with a stability factor of 4.39 as the most consistent.
 
 ```{r}
-# Create a histogram
-hist(teachers, 
-     main = "teachers Histogram",
-     xlab = "teachers",
-     ylab = "Frequency",
-     col = "skyblue",
-     border = "black")
+q1data <- c()
+iterations = 250
+for (i in 1:iterations) {
+  q1data <- c(q1data, BrLw(odds = 4.4))
+}
+hist(q1data, main = "Histogram of Results", xlab = "Value", col = "red", border = "black", breaks = 15)
 ```
+
+
+Using trial and error we adjusted the input odds to get the results to mean over 0 as consistantly as possible, there is some natural variation but without overloading the processing power of this system with extremely large sample sizes this 4.4 odds is the best result that we can obtain.
 
 
 # What size of class makes the 2:1 bet fair?  Use manipulation of number of Students to tune Brownlows earnings to zero.
 
 <!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
+```{r}
+q2data <- c()
+iterations = 250
+for (i in 1:iterations) {
+  q2data <- c(q2data, BrLw(numClass = 28))
+}
+hist(q2data, main = "Histogram of Results", xlab = "Value", col = "blue", border = "black", breaks = 15)
+```
+
+Using trial and error we adjusted the input odds to get the results to mean over 0 as consistantly as possible, there is some natural variation but without overloading the processing power of this system with extremely large sample sizes this class size of 28 is the best result that we can obtain.
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If professor Brownlow is consistantly making or losing money how could he change his payout so that his profits center on zero?  Also discuss what size his class should be in order to have his current scheme balance at zero profit.!-->
 
+We have shown that through the experiment with the given starting conditions professor brownlow will always over time make a profit as we have demonstrated above. Given the nature of the simulation and the limited processing power we have to make some estimates as the variables and measures of center will change for each knitting. We can say however that the result will always be positive and generally land near 2-3 hundred dollers profit over the experiment.
+
+Additionally through trial and error we are able to determine two other ways to change the design of the experiments so that the bet is fair and will generally land in a range near zero. A class size of 28 will generally hover near zero and a bet of 4.40 to 1 will also land near one.
